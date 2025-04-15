@@ -20,7 +20,7 @@ matplotlib
 ```
 ## Dataset:
 
-The dataset used for this project is the [inaturlist_12K]().This dataset is a collection of labeled images where each image belongs to one of several classes. The model is trained to classify these images correctly. In the code, the dataset is accessed through ```train_loader```,``` val_loader```, and ```test_loader```, which represent the training, validation, and test sets, respectively. The images are fed into the model, and the goal is for the model to predict the correct class for each image.
+The dataset used for this project is the [inaturlist_12K](https://drive.google.com/drive/folders/17JUjrqNAopZXWyB7xmuew1WvIxKXjpd5?usp=sharing).This dataset is a collection of labeled images where each image belongs to one of several classes. The model is trained to classify these images correctly. In the code, the dataset is accessed through ```train_loader```,``` val_loader```, and ```test_loader```, which represent the training, validation, and test sets, respectively. The images are fed into the model, and the goal is for the model to predict the correct class for each image.
 
 ## Data Processing:
 
