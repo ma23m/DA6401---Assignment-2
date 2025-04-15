@@ -26,6 +26,24 @@ The dataset used for this project is the [inaturlist_12K]().This dataset is a co
 
  In this project, I used standard data loading and preprocessing steps to prepare the image dataset for training, validation, and testing.I applied transformations to the images like resizing, normalizing, and  data augmentation. These steps help the model generalize better.
 
+## Model Architecture:
+
+- The model is defined in the CustomCNN class ``` model = CustomCNN(...))```
+
+- The CNN takes:
+
+     1.```input_channels```:input channels = 3 (for RGB images)
+
+     2.```num_filters```: num_filters is a list of filters per conv layer, (e.g. [64, 64, 64, 64, 64])
+
+     3.```activation ```: The activation function are (e.g., 'relu', 'gelu','mish' etc.)
+
+dense_neurons = 128 (for the fully connected layer)
+
+dropout_rate to avoid overfitting
+
+batch_norm to improve training stability
+
 
 
 
