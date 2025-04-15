@@ -24,6 +24,8 @@ The dataset used for this project is the [inaturlist_12K]().This dataset is a co
 
 ## Data Processing:
 
+ In this project, I used standard data loading and preprocessing steps to prepare the image dataset for training, validation, and testing.I applied transformations to the images like resizing, normalizing, and  data augmentation. These steps help the model generalize better.
+
 
 
 
