@@ -37,12 +37,64 @@ The dataset used for this project is the [inaturlist_12K](https://drive.google.c
      2.```num_filters```: num_filters is a list of filters per conv layer, (e.g. [64, 64, 64, 64, 64])
 
      3.```activation ```: The activation function are (e.g., 'relu', 'gelu','mish' etc.)
+  
+     4.```batch_norm```:batch_norm to improve training stability.
+  
+     5.```dropout_rate```:dropout_rate to avoid overfitting.
+  
+     6.```kernel_size```:A list specifying the kernel size for each convolutional layer.
+  
+     7.```dense_neurons```:The number of neurons in the dense layer.
+  
+     8.```Sweep method```: bayes (Bayesian optimization)
 
-dense_neurons = 128 (for the fully connected layer)
+The example of the initializing model:
 
-dropout_rate to avoid overfitting
+```model = CustomCNN(input_channels=3,input_size=128,num_classes=num_classes,num_conv_layers=5,num_filters=[32, 64, 128, 256, 512,1024],kernel_size=[3, 5, 3, 5, 1],dense_neurons=[512, 256, 64])```
 
-batch_norm to improve training stability
+
+## Training Process:
+
+  The CNN model trained with selected configuration where 
+  
+  - ```Training loop logs```: train_loss, train_accuracy, val_loss, val_accuracy
+
+  - ```Optimizer```: Adam which updated model parameters
+
+  - ```Loss```: CrossEntropyLoss loss function used this model.
+    
+
+## Best Model Selection:
+
+ - Best config manually inserted and model re-trained.
+
+ - Evaluated on test set to report test_accuracy
+
+## Prediction Visualization:
+
+ - Displays 30 test samples with predicted and true labels.
+
+## Customization:
+
+Anyone can easily change the model by:
+
+ - Updating the parameters in the sweep configuration (like number of filters, activation function, dropout, etc.).
+
+ - Editing the ```CustomCNN()``` class to modify the CNN architecture as per need.
+
+This lets anyone experiment with different model designs and find the one that works best for that dataset.
+
+## Note:
+
+The model is trained using a  ```CUDA-enabled GPU``` (available on ```Kaggle```), since training CNNs requires a lot of computation and would be slow on a regular ```CPU```.
+
+
+
+
+
+
+   
+
 
 
 
