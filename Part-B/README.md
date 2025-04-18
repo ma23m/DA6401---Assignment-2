@@ -2,11 +2,49 @@
 
 ### Model:
   
--  I have chosen ```ResNet50``` for fine-tuning in Part B.
+-  I have chosen ```ResNet50``` for fine-tuning in Part B of the project.
 
 ### Dataset: 
 
- - [iNaturalist 12K](/kaggle/input/inaturalist-12)
+ - Dataset used: [iNaturalist 12K](/kaggle/input/inaturalist-12)
+   
+ - The dataset is divided into training and validation sets.
+   
+ - Preprocessing includes:
+   
+   - Resizing images to 224x224 pixels.
+
+   - Random cropping and horizontal flipping for data augmentation.
+
+   - Normalization using ImageNet mean and standard deviation.
+   
+
+### Model Configuration:
+
+  - A ResNet50 model with pretrained weights (trained on ImageNet) is used.
+
+  - The final fully connected (FC) layer is replaced with:
+
+             nn.Linear(num_ftrs, 10)
+   
+      to adapt to the 10-class classification task.
+
+  - Only the weights of the final FC layer and optionally some later layers are trained; early layers can be frozen based on the ```freeze_up_to``` hyperparameter.
+
+### Fine-Tuning Technique:
+
+  - Strategy:
+   - Partial fine-tuning (selective layer unfreezing)
+
+  - Layer Freezing:
+
+    - Layers of ResNet50 are frozen up to a configurable depth (freeze_up_to).
+
+    - This helps retain low-level feature representations while adapting high-level features to the new dataset.
+
+  - Final Layer:
+    
+    - Always trainable and modified to output predictions for 10 classes.
 
 ### Hyperparameters Tuned:
 
@@ -20,13 +58,6 @@
 
   - ```Loss Function```: CrossEntropyLoss
 
-### Model Configuration:
-
-  - A ResNet50 model is used with the pretrained weights.
-
-  - The final fully connected layer is modified to predict 10 classes.
-
-  - Only the weights of the final fully connected layer are trained; the rest are frozen.
 
 ### Data Loading:
   - The iNaturalist 12K dataset is used for training and validation.
@@ -42,19 +73,6 @@ The model is trained
 
   - ```learning_rate```: [0.1, 0.01, 0.001]
 
-### Fine-Tuning Technique:
-  
-  - ```Fine-Tuning Strategy```: Partial fine-tuning (also known as selective layer unfreezing).
-
-  - ```Layer Freezing```:
-    - Initial layers of ResNet50 are optionally frozen based on the ```freeze_up_to``` hyperparameter.
-
-    - This allows tuning of only the later layers while keeping early layers fixed.
-
-  - ```Final Layer Modification```:
-
-    - The original fully connected layer is replaced with a new one: nn.Linear(num_ftrs, 10) to adapt to the 10-class 
-         classification task.
 
 ### Validation:
 
