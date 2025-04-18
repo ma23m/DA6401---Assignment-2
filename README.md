@@ -11,3 +11,5 @@ This repository is divided into two parts:
   - # PartB:
   
     - Contains the fine-tuning implementation using ResNet50 with pre-trained weights, training code, and its README.
+
+ ## Wandb Project Report: [Report link]()
