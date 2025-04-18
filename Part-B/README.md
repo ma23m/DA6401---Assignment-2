@@ -2,11 +2,11 @@
 
 ### Model:
   
--  ResNet50 (pretrained)
+-  I have chosen ResNet50 for fine-tuning in Part B.
 
 ### Dataset: 
 
- - iNaturalist 12K
+ - [iNaturalist 12K](/kaggle/input/inaturalist-12)
 
 ### Hyperparameters Tuned:
 
@@ -32,7 +32,7 @@
   - The iNaturalist 12K dataset is used for training and validation.
 
   - The dataset is preprocessed with resizing, normalization, and transformation.
-
+ partial fully connected,
 ### Training:
 
 The model is trained 
