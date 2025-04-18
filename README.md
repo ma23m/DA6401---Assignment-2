@@ -1,3 +1,13 @@
 # DA6401---Assignment-2:
 
-Please check the ```PartA``` and ```PartB``` folders. Each folder contains its respective ```code files``` and ```README```. Kindly refer to the ```PartA``` and ```PartB``` directories for the complete content.
+## Directory Structure:
+
+This repository is divided into two parts:
+
+  - # PartA:
+  
+    - Contains the custom CNN model built from scratch along with its training code and README.
+
+  - # PartB:
+  
+    - Contains the fine-tuning implementation using ResNet50 with pre-trained weights, training code, and its README.
