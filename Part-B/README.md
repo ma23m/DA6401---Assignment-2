@@ -78,7 +78,45 @@ The model is trained
 
 After training, the model is evaluated on the validation set.
 
-Validation accuracy is .
+Validation accuracy is **`78.5%`**.
+
+## Sweep Configuration
+
+The sweep searches over the following hyperparameters:
+
+| Hyperparameter  | Values                 | Description                                     |
+|-----------------|------------------------|-------------------------------------------------|
+| batch_size    | 16, 32, 64, 128        | Number of samples per training batch           |
+| freeze_up_to  | 0, 3, 5, 7             | Number of layers to freeze in transfer learning|
+| epochs        | 5, 7, 10, 12           | Total training epochs                          |
+| learning_rate | 0.1, 0.01, 0.001       | Learning rate for the optimizer                |
+
+
+
+## Command-Line Arguments
+
+The script accepts the following arguments to configure the sweep:
+
+| Argument           | Type    | Default                                         | Description                              |
+|--------------------|---------|-------------------------------------------------|------------------------------------------|
+| --project_name   | str   | 'DL_A2'                                       | W&B project name                         |
+| --sweep_name     | str   | 'resnet50_hyperparam_sweep'                  | W&B sweep name                           |
+| --data_path      | str   | '/kaggle/input/inaturalist-12/inaturalist_12K'| Root path to dataset                     |
+| --sweep_count    | int   | 50                                            | Number of sweep runs to execute          |
+| --use_cuda       | flag  | False (enabled when flag is present)         | Use CUDA for training if available       |
+
+
+## Running the Code
+To run a W&B sweep, please run the following command:
+```
+python train.py --project_name <project_name> --sweep_name <sweep_name> --data_path <path_to_image_dataset> --sweep_count 1 --use_cuda
+```
+
+## Example Usage
+```
+python train.py --project_name "DL_A2" --sweep_name "resnet50_exp2_sweep" --data_path "C:\Users\HP\Downloads\nature_12K" --sweep_count 1 --use_cuda
+```
+
 
 ### Results:
 
