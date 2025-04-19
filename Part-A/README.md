@@ -84,21 +84,63 @@ Anyone can easily change the model by:
 
 This lets anyone experiment with different model designs and find the one that works best for that dataset.
 
+
+## Sweep Configuration
+
+The sweep uses *Bayesian Optimization* to find the best hyperparameters that maximize validation accuracy. The table below summarizes the hyperparameters being explored:
+
+| Hyperparameter       | Values/Options                                                                 |
+|----------------------|--------------------------------------------------------------------------------|
+| Convolution Filters  | [16, 32, 64, 128, 256], [64, 64, 64, 64, 64], [256, 128, 64, 32, 16], etc. |
+| Activation Functions | relu, gelu, silu, mish                                                 |
+| Batch Normalization  | True, False                                                                |
+| Dropout Rates        | 0.2, 0.3                                                                   |
+| Data Augmentation    | True, False                                                                |
+| Filter Organization  | same, double, half                                                       |
+| Kernel Sizes         | [3, 3, 3, 3, 3], [3, 3, 5, 3, 3], [3, 5, 3, 5, 3], [5, 5, 5, 5, 5], etc. |
+| Dense Neurons        | [512], [256], [64, 128, 256], [512, 256, 64], etc.                      |
+| Epochs               | 5, 7, 10, 12, 15, 17, 20                                         |
+
+
+
+
+
+## Command-Line Arguments
+
+The script supports the following arguments to customize the sweep:
+
+| Argument          | Type   | Default                       | Description                          |
+|-------------------|--------|-------------------------------|--------------------------------------|
+| --project       | str  | 'DL_A2'                     | WandB project name                   |
+| --sweep_name    | str  | 'scratch_hyperparam_sweep-1'| Name assigned to the sweep          |
+| --sweep_count   | int  | 100                         | Number of sweep runs to execute     |
+
+
+## Running the Code
+To run a W&B sweep, use the following command:
+```
+cd <current_directory>
+python wandb_login.py
+python sweep_runner.py --project <project_name> --sweep_name <sweep_name> --sweep_count <number_of_runs>
+```
+
+### Example
+```
+cd <current_directory>
+python wandb_login.py
+python sweep_runner.py --project DL_A2 --sweep_name scratch_hyperparam_sweep-1 --sweep_count 1
+```
+
+### For the executing the best model please run the following command:
+```
+python best_model_run.py --num_filters 64 64 64 64 64 --kernel_size 3 5 3 5 3 --activation gelu --dropout_rate 0.2 --batch_norm --dense_neurons 128 --epochs 10 --run_name "best-run"
+```
+
+### For getting the 10×3 grid containing sample images from the test data and predictions made by my best model to wandb log please run:
+```
+python show_predictions.py
+```
+
 ## Note:
 
 The model is trained using a  ```CUDA-enabled GPU``` (available on ```Kaggle```), since training CNNs requires a lot of computation and would be slow on a regular ```CPU```.
-
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
